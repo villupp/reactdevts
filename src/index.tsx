@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
+import RepoViewer from './RepoViewer';
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root') as HTMLElement
+    <RepoViewer value="" />,
+    document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();
