@@ -1,5 +1,54 @@
 body {
+    background-color: #E5E6E7;
     margin: 0;
-    padding: 10px;
     font-family: sans-serif;
+    overflow: hidden;
+}
+
+.repo-name-input {
+    color: #eee;
+    background-color: #3B5876;
+    padding: 25px 10px;
+    vertical-align: middle;
+}
+
+.repo-info {
+    margin: 0 auto;
+}
+
+.commits-title {
+    padding: 15px 13px 5px;
+}
+
+.repo-info>.right {
+    width: 83%;
+    float: right;
+}
+
+.repo-info>.left {
+    width: 17%;
+    float: left;
+    background-color: #93A6B9;
+    text-align: center;
+}
+
+.commit-list {
+    height: 1500px;
+}
+
+.commit-item {
+    padding: 7px 3px;
+}
+
+.commit-item:hover {
+    cursor: pointer;
+    background-color: #738699;
+}
+
+.commit-detail {
+    padding: 13px;
+}
+
+.commit-detail>table {
+    text-align: left;
 }

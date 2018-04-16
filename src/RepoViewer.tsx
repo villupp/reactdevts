@@ -64,17 +64,24 @@ class RepoViewer extends React.Component<RepoViewerProps, RepoViewerState> {
                         this.searchTimeout = 0;
                     });
             },
-            3000);
+            500);
     }
 
     render() {
         const repo = this.state.repo;
         const commits = this.state.commits;
+        const initialRepoName = 'villupp/reactdev';
+        const textInputIdentifier = 'repo-name';
 
         return (
             <div className="repo-viewer">
-                <TextInputField label="Repository name: " onChange={this.onRepoNameChange} />
-                <hr />
+                <TextInputField
+                    label="Repository name: "
+                    className="repo-name-input"
+                    onChange={this.onRepoNameChange}
+                    initialValue={initialRepoName}
+                    identifier={textInputIdentifier}
+                />
                 <RepoInfo repo={repo} commits={commits} />
             </div>
         );

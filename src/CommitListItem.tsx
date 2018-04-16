@@ -7,17 +7,30 @@ interface CommitListItemProps {
 
 class CommitListItem extends React.Component<CommitListItemProps> {
     render() {
-        const commit: Commit = this.props.commit;
+        const commit = this.props.commit;
+        const commitDate = formattedDate(commit.date);
 
         return (
-            <div className="commit-list">
-                <h4>{commit.sha}</h4>
-                <div>{commit.authorName}</div>
-                <div>{commit.authorEmail}</div>
-                <div>{commit.message}</div>
+            <div className="commit-item">
+                <div>{commitDate} | {commit.authorName}</div>
             </div>
         );
     }
+}
+
+function formattedDate(dateToFormat: Date) {
+    const date = dateToFormat.getDate();
+    const month = dateToFormat.getMonth() + 1;
+    const year = dateToFormat.getFullYear();
+    const hours = dateToFormat.getHours();
+    const minutes = dateToFormat.getMinutes();
+
+    let strMinutes = minutes.toString();
+
+    if (minutes.toString().length === 1) {
+        strMinutes = '0' + minutes;
+    }
+    return date + '.' + month + '.' + year + ' ' + hours + '.' + strMinutes;
 }
 
 export default CommitListItem;
