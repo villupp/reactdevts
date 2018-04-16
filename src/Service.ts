@@ -4,7 +4,7 @@ import Repository from './models/Repository';
 const URL_BASE = 'https://api.github.com';
 const CLIENT_ID = 'ffd682caab6b6c6b8ffe';
 const KEY = '';
-const mock = false;
+const mock = true;
 
 class Service {
     getRepo(repoFullName: string): Promise<Repository> {
