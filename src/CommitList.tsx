@@ -4,6 +4,8 @@ import Commit from './models/Commit';
 
 interface CommitListProps {
     commits?: Array<Commit>;
+    selectedCommit?: string;
+    onSelect(sha: string): void;
 }
 
 class CommitList extends React.Component<CommitListProps> {
@@ -12,7 +14,18 @@ class CommitList extends React.Component<CommitListProps> {
 
         if (this.props.commits != null) {
             commits = this.props.commits.map((commit) => {
-                return (<CommitListItem key={commit.sha} commit={commit} />);
+                let selected = false;
+                if (commit.sha === this.props.selectedCommit) {
+                    selected = true;
+                }
+                return (
+                    <CommitListItem
+                        key={commit.sha}
+                        commit={commit}
+                        selected={selected}
+                        onSelect={this.props.onSelect}
+                    />
+                );
             });
         }
 

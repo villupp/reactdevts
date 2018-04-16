@@ -7,20 +7,38 @@ import Commit from './models/Commit';
 interface RepoInfoProps {
     repo?: Repository;
     commits?: Array<Commit>;
+    selectedCommit?: string;
+    onCommitSelect(sha: string): void;
 }
 
 export default class RepoInfo extends React.Component<RepoInfoProps> {
+    getCommitBySha(sha?: string) {
+        const commits = this.props.commits;
+        if (commits !== undefined) {
+            for (const commit of commits) {
+                if (commit.sha === sha) {
+                    return commit;
+                }
+            }
+        }
+        return undefined;
+    }
+
     render() {
         const repo = this.props.repo;
         const commits = this.props.commits;
-        const selectedCommit = commits !== undefined && commits.length > 0 ? commits[0] : undefined;
+        const selectedCommit = this.getCommitBySha(this.props.selectedCommit);
 
         if (repo != null) {
             return (
                 <div className="repo-info">
                     <div className="left">
                         <div className="commits-title"><b>Commits</b></div>
-                        <CommitList commits={commits} />
+                        <CommitList
+                            commits={commits}
+                            onSelect={this.props.onCommitSelect}
+                            selectedCommit={this.props.selectedCommit}
+                        />
                     </div>
                     <div className="right">
                         <CommitDetail commit={selectedCommit} />

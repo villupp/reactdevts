@@ -13,6 +13,7 @@ interface RepoViewerState {
     repoName: string;
     repo?: Repository;
     commits?: Array<Commit>;
+    selectedCommit?: string;
 }
 
 class RepoViewer extends React.Component<RepoViewerProps, RepoViewerState> {
@@ -23,10 +24,18 @@ class RepoViewer extends React.Component<RepoViewerProps, RepoViewerState> {
         this.state = {
             repoName: '',
             repo: undefined,
-            commits: undefined
+            commits: undefined,
+            selectedCommit: undefined
         };
         this.searchTimeout = 0;
         this.onRepoNameChange = this.onRepoNameChange.bind(this);
+        this.onCommitSelect = this.onCommitSelect.bind(this);
+    }
+
+    onCommitSelect(sha: string) {
+        this.setState({
+            selectedCommit: sha
+        });
     }
 
     onRepoNameChange(repoName: string) {
@@ -70,6 +79,7 @@ class RepoViewer extends React.Component<RepoViewerProps, RepoViewerState> {
     render() {
         const repo = this.state.repo;
         const commits = this.state.commits;
+        const selectedCommit = this.state.selectedCommit;
         const initialRepoName = 'villupp/reactdev';
         const textInputIdentifier = 'repo-name';
 
@@ -82,7 +92,12 @@ class RepoViewer extends React.Component<RepoViewerProps, RepoViewerState> {
                     initialValue={initialRepoName}
                     identifier={textInputIdentifier}
                 />
-                <RepoInfo repo={repo} commits={commits} />
+                <RepoInfo
+                    repo={repo}
+                    commits={commits}
+                    onCommitSelect={this.onCommitSelect}
+                    selectedCommit={selectedCommit}
+                />
             </div>
         );
     }

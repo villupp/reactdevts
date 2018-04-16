@@ -4,7 +4,7 @@ import Repository from './models/Repository';
 const URL_BASE = 'https://api.github.com';
 const CLIENT_ID = 'ffd682caab6b6c6b8ffe';
 const KEY = '';
-const mock = true;
+const mock = false;
 
 class Service {
     getRepo(repoFullName: string): Promise<Repository> {
@@ -120,7 +120,7 @@ class Service {
                         var commit: Commit = new Commit();
                         commit.authorName = rawCommit.commit.author.name;
                         commit.authorEmail = rawCommit.commit.author.email;
-                        commit.date = rawCommit.commit.author.date;
+                        commit.date = new Date(rawCommit.commit.author.date);
                         commit.message = rawCommit.commit.message;
                         commit.sha = rawCommit.sha;
                         return commit;

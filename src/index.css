@@ -1,5 +1,5 @@
 body {
-    background-color: #E5E6E7;
+    background-color: #FEFCF7;
     margin: 0;
     font-family: sans-serif;
     overflow: hidden;
@@ -7,9 +7,17 @@ body {
 
 .repo-name-input {
     color: #eee;
-    background-color: #3B5876;
+    background-color: #374152;
     padding: 25px 10px;
     vertical-align: middle;
+}
+
+input#text-input-field-repo-name {
+    height: 22px;
+    width: 500px;
+    border-radius: 6px;
+    font-size: 21px;
+    padding: 5px;
 }
 
 .repo-info {
@@ -28,7 +36,7 @@ body {
 .repo-info>.left {
     width: 17%;
     float: left;
-    background-color: #93A6B9;
+    background-color: #AEC9E2;
     text-align: center;
 }
 
@@ -42,7 +50,15 @@ body {
 
 .commit-item:hover {
     cursor: pointer;
-    background-color: #738699;
+    background-color: rgba(152, 176, 255, 0.555);
+}
+
+.commit-item.selected:hover {
+    cursor: default;
+}
+
+.commit-item.selected {
+    background-color: #FEFCF7;
 }
 
 .commit-detail {

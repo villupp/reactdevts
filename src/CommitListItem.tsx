@@ -3,15 +3,18 @@ import Commit from './models/Commit';
 
 interface CommitListItemProps {
     commit: Commit;
+    selected: boolean;
+    onSelect(sha: string): void;
 }
 
 class CommitListItem extends React.Component<CommitListItemProps> {
     render() {
         const commit = this.props.commit;
         const commitDate = formattedDate(commit.date);
+        const className = 'commit-item' + (this.props.selected === true ? ' selected' : '');
 
         return (
-            <div className="commit-item">
+            <div className={className} onClick={() => this.props.onSelect(commit.sha)}>
                 <div>{commitDate} | {commit.authorName}</div>
             </div>
         );
