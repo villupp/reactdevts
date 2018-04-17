@@ -87,7 +87,7 @@ input#text-input-field-repo-name {
 
 .commit-item:hover {
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.55);
+    background-color: rgba(254, 252, 247, 0.7);
 }
 
 .commit-item.selected:hover {
