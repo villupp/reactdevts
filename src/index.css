@@ -68,3 +68,11 @@ input#text-input-field-repo-name {
 .commit-detail>table {
     text-align: left;
 }
+
+.red-text {
+    color: red;
+}
+
+.green-text {
+    color: green;
+}

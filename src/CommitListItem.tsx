@@ -15,7 +15,8 @@ class CommitListItem extends React.Component<CommitListItemProps> {
 
         return (
             <div className={className} onClick={() => this.props.onSelect(commit.sha)}>
-                <div>{commitDate} | {commit.authorName}</div>
+                <div>{commitDate}</div>
+                <div>{commit.authorEmail}</div>
             </div>
         );
     }

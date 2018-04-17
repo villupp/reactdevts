@@ -23,13 +23,11 @@ class Service {
             };
 
             return new Promise((resolve, reject) => {
-                resolve(repo);
+                setTimeout(() => { resolve(repo); }, getRandomNumber(50, 1000));
             });
         } else {
             return getFetch(relUrl)
                 .then((res) => {
-                    // console.log(`getRepo | Got response: ${(res.ok
-                    //    ? 'OK' : 'NOT OK')}, status ${res.status}: ${res.statusText}`);
                     return res.json();
                 })
                 .then((rawRepo) => {
@@ -47,6 +45,53 @@ class Service {
         }
     }
 
+    getCommit(repoFullName: string, sha: string): Promise<Commit> {
+        const relUrl = `/repos/${repoFullName}/commits/${sha}?client_id=${CLIENT_ID}&client_secret=${KEY}`;
+
+        if (mock) {
+            const additions = getRandomNumber(0, 250);
+            const deletions = getRandomNumber(0, 250);
+            const totalMods = additions + deletions;
+
+            const commit: Commit = {
+                sha: sha,
+                authorName: 'Ville Piirainen',
+                authorEmail: 'ville.piirainen@cgi.com',
+                date: new Date(),
+                message: 'Nice commit number ' + getRandomNumber(1, 1000),
+                statsAssigned: true,
+                additions: additions,
+                deletions: deletions,
+                totalModifications: totalMods
+            };
+
+            return new Promise((resolve, reject) => {
+                setTimeout(() => { resolve(commit); }, getRandomNumber(50, 1000));
+            });
+        } else {
+            return getFetch(relUrl)
+                .then((res) => {
+                    return res.json();
+                })
+                .then((rawCommit) => {
+                    var commit: Commit = new Commit();
+                    commit.authorName = rawCommit.commit.author.name;
+                    commit.authorEmail = rawCommit.commit.author.email;
+                    commit.date = new Date(rawCommit.commit.author.date);
+                    commit.message = rawCommit.commit.message;
+                    commit.sha = rawCommit.sha;
+                    commit.additions = rawCommit.stats.additions;
+                    commit.deletions = rawCommit.stats.deletions;
+                    commit.totalModifications = rawCommit.stats.total;
+                    commit.statsAssigned = true;
+
+                    return new Promise<Commit>((resolve, reject) => {
+                        resolve(commit);
+                    });
+                });
+        }
+    }
+
     getCommits(repoFullName: string): Promise<Array<Commit>> {
         const relUrl = `/repos/${repoFullName}/commits?client_id=${CLIENT_ID}&client_secret=${KEY}`;
 
@@ -56,59 +101,76 @@ class Service {
                 authorName: 'Ville Piirainen',
                 authorEmail: 'ville.piirainen@cgi.com',
                 date: new Date(),
-                message: 'Nice commit'
+                message: 'Nice commit',
+                statsAssigned: false
             }, {
                 sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dc2',
                 authorName: 'Ville Piirainen',
                 authorEmail: 'ville.piirainen@cgi.com',
                 date: new Date(),
-                message: 'Nice commit'
+                message: 'Nice commit',
+                statsAssigned: false
+
             }, {
                 sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dc3',
                 authorName: 'Ville Piirainen',
                 authorEmail: 'ville.piirainen@cgi.com',
                 date: new Date(),
-                message: 'Nice commit'
+                message: 'Nice commit',
+                statsAssigned: false
+
             }, {
                 sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dc4',
                 authorName: 'Ville Piirainen',
                 authorEmail: 'ville.piirainen@cgi.com',
                 date: new Date(),
-                message: 'Nice commit'
+                message: 'Nice commit',
+                statsAssigned: false
+
             }, {
                 sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dc5',
                 authorName: 'Ville Piirainen',
                 authorEmail: 'ville.piirainen@cgi.com',
                 date: new Date(),
-                message: 'Nice commit'
+                message: 'Nice commit',
+                statsAssigned: false
+
             }, {
                 sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dc6',
                 authorName: 'Ville Piirainen',
                 authorEmail: 'ville.piirainen@cgi.com',
                 date: new Date(),
-                message: 'Nice commit'
+                message: 'Nice commit',
+                statsAssigned: false
+
             }, {
                 sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dc7',
                 authorName: 'Ville Piirainen',
                 authorEmail: 'ville.piirainen@cgi.com',
                 date: new Date(),
-                message: 'Nice commit'
+                message: 'Nice commit',
+                statsAssigned: false
+
             }, {
                 sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dc8',
                 authorName: 'Ville Piirainen',
                 authorEmail: 'ville.piirainen@cgi.com',
                 date: new Date(),
-                message: 'Nice commit'
+                message: 'Nice commit',
+                statsAssigned: false
+
             }, {
                 sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dc9',
                 authorName: 'Ville Piirainen',
                 authorEmail: 'ville.piirainen@cgi.com',
                 date: new Date(),
-                message: 'Nice commit'
+                message: 'Nice commit',
+                statsAssigned: false
+
             }];
 
             return new Promise((resolve, reject) => {
-                resolve(commits);
+                setTimeout(() => { resolve(commits); }, getRandomNumber(50, 1000));
             });
         } else {
             return getFetch(relUrl)
@@ -131,6 +193,10 @@ class Service {
                 });
         }
     }
+}
+
+function getRandomNumber(low: number, high: number) {
+    return Math.floor(Math.random() * high) + low;
 }
 
 function getFetch(relativeUrl: string, httpHeaders: Headers = new Headers()) {

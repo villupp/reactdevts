@@ -32,6 +32,18 @@ class CommitDetail extends React.Component<CommitDetailProps> {
                                 <th>Committed on</th>
                                 <td>{commitDate}</td>
                             </tr>
+                            <tr>
+                                <th>Additions</th>
+                                <td className="green-text">+{commit.additions}</td>
+                            </tr>
+                            <tr>
+                                <th>Deletions</th>
+                                <td className="red-text">-{commit.deletions}</td>
+                            </tr>
+                            <tr>
+                                <th>Total modifications</th>
+                                <td>{commit.totalModifications}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

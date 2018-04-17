@@ -33,9 +33,40 @@ class RepoViewer extends React.Component<RepoViewerProps, RepoViewerState> {
     }
 
     onCommitSelect(sha: string) {
+        const service = new Service();
+        const repo = this.state.repo;
+
+        const commits = this.state.commits;
+
+        if (commits !== undefined && repo !== undefined) {
+            for (let iterateCommit of commits) {
+                if (iterateCommit.sha === sha && !iterateCommit.statsAssigned) {
+                    service.getCommit(repo.fullName, sha)
+                        .then((retrievedCommit) => {
+                            this.assignCommitStats(retrievedCommit);
+                        });
+                }
+            }
+        }
+
         this.setState({
             selectedCommit: sha
         });
+    }
+
+    assignCommitStats(retrievedCommit: Commit) {
+        if (this.state.commits !== undefined) {
+            let commits = this.state.commits.splice(0);
+            let commitIndex = -1;
+            for (let i = 0; i < commits.length; i++) {
+                let commit = commits[i];
+                if (commit.sha === retrievedCommit.sha) {
+                    commitIndex = i;
+                }
+            }
+            commits[commitIndex] = retrievedCommit;
+            this.setState({ commits: commits });
+        }
     }
 
     onRepoNameChange(repoName: string) {
