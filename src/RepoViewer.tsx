@@ -76,7 +76,9 @@ class RepoViewer extends React.Component<RepoViewerProps, RepoViewerState> {
         }
 
         this.setState({
-            repo: undefined
+            repo: undefined,
+            commits: undefined,
+            selectedCommit: undefined
         });
 
         this.searchTimeout = window.setTimeout(
@@ -117,7 +119,7 @@ class RepoViewer extends React.Component<RepoViewerProps, RepoViewerState> {
         return (
             <div className="repo-viewer">
                 <TextInputField
-                    label="Repository name: "
+                    label="Repository name"
                     className="repo-name-input"
                     onChange={this.onRepoNameChange}
                     initialValue={initialRepoName}

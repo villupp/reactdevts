@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Commit from './models/Commit';
+import Title from './Title';
 
 interface CommitDetailProps {
     commit?: Commit;
@@ -12,46 +13,48 @@ class CommitDetail extends React.Component<CommitDetailProps> {
 
         if (commit !== undefined) {
             return (
-                <div className="commit-detail">
-                    <h4>Commit Details</h4>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>SHA</th>
-                                <td>{commit.sha}</td>
-                            </tr>
-                            <tr>
-                                <th>Message</th>
-                                <td>{commit.message}</td>
-                            </tr>
-                            <tr>
-                                <th>Author</th>
-                                <td>{commit.authorName} ({commit.authorEmail})</td>
-                            </tr>
-                            <tr>
-                                <th>Committed on</th>
-                                <td>{commitDate}</td>
-                            </tr>
-                            <tr>
-                                <th>Additions</th>
-                                <td className="green-text">+{commit.additions}</td>
-                            </tr>
-                            <tr>
-                                <th>Deletions</th>
-                                <td className="red-text">-{commit.deletions}</td>
-                            </tr>
-                            <tr>
-                                <th>Total modifications</th>
-                                <td>{commit.totalModifications}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div>
+                    <Title additionalClass="commit-details-title" text="Commit Details" />
+                    <div className="commit-detail">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>SHA</th>
+                                    <td>{commit.sha}</td>
+                                </tr>
+                                <tr>
+                                    <th>Message</th>
+                                    <td>{commit.message}</td>
+                                </tr>
+                                <tr>
+                                    <th>Author</th>
+                                    <td>{commit.authorName} ({commit.authorEmail})</td>
+                                </tr>
+                                <tr>
+                                    <th>Committed on</th>
+                                    <td>{commitDate}</td>
+                                </tr>
+                                <tr>
+                                    <th>Additions</th>
+                                    <td className="green-text">+{commit.additions}</td>
+                                </tr>
+                                <tr>
+                                    <th>Deletions</th>
+                                    <td className="red-text">-{commit.deletions}</td>
+                                </tr>
+                                <tr>
+                                    <th>Total modifications</th>
+                                    <td>{commit.totalModifications}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             );
         } else {
             return (
-                <div className="commit-detail">
-                    <h4>No commit selected</h4>
+                <div>
+                    <Title additionalClass="commit-details-title" text="No commit selected" />
                 </div>
             );
         }

@@ -110,7 +110,6 @@ class Service {
                 date: new Date(),
                 message: 'Nice commit',
                 statsAssigned: false
-
             }, {
                 sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dc3',
                 authorName: 'Ville Piirainen',
@@ -118,7 +117,6 @@ class Service {
                 date: new Date(),
                 message: 'Nice commit',
                 statsAssigned: false
-
             }, {
                 sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dc4',
                 authorName: 'Ville Piirainen',
@@ -126,7 +124,6 @@ class Service {
                 date: new Date(),
                 message: 'Nice commit',
                 statsAssigned: false
-
             }, {
                 sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dc5',
                 authorName: 'Ville Piirainen',
@@ -134,7 +131,6 @@ class Service {
                 date: new Date(),
                 message: 'Nice commit',
                 statsAssigned: false
-
             }, {
                 sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dc6',
                 authorName: 'Ville Piirainen',
@@ -142,7 +138,6 @@ class Service {
                 date: new Date(),
                 message: 'Nice commit',
                 statsAssigned: false
-
             }, {
                 sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dc7',
                 authorName: 'Ville Piirainen',
@@ -150,7 +145,6 @@ class Service {
                 date: new Date(),
                 message: 'Nice commit',
                 statsAssigned: false
-
             }, {
                 sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dc8',
                 authorName: 'Ville Piirainen',
@@ -158,7 +152,6 @@ class Service {
                 date: new Date(),
                 message: 'Nice commit',
                 statsAssigned: false
-
             }, {
                 sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dc9',
                 authorName: 'Ville Piirainen',
@@ -166,7 +159,27 @@ class Service {
                 date: new Date(),
                 message: 'Nice commit',
                 statsAssigned: false
-
+            }, {
+                sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dd0',
+                authorName: 'Ville Piirainen',
+                authorEmail: 'ville.piirainen@cgi.com',
+                date: new Date(),
+                message: 'Nice commit',
+                statsAssigned: false
+            }, {
+                sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dd1',
+                authorName: 'Ville Piirainen',
+                authorEmail: 'ville.piirainen@cgi.com',
+                date: new Date(),
+                message: 'Nice commit',
+                statsAssigned: false
+            }, {
+                sha: '0b86ef4101ac90c79341f4eb94b2212ceac57dd2',
+                authorName: 'Ville Piirainen',
+                authorEmail: 'ville.piirainen@cgi.com',
+                date: new Date(),
+                message: 'Nice commit',
+                statsAssigned: false
             }];
 
             return new Promise((resolve, reject) => {

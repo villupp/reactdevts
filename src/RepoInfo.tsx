@@ -3,6 +3,7 @@ import CommitList from './CommitList';
 import CommitDetail from './CommitDetail';
 import Repository from './models/Repository';
 import Commit from './models/Commit';
+import Title from './Title';
 
 interface RepoInfoProps {
     repo?: Repository;
@@ -33,7 +34,7 @@ export default class RepoInfo extends React.Component<RepoInfoProps> {
             return (
                 <div className="repo-info">
                     <div className="left">
-                        <div className="commits-title"><b>Commits</b></div>
+                        <Title additionalClass="commits-title" text={`Commits (${repo.name})`} />
                         <CommitList
                             commits={commits}
                             onSelect={this.props.onCommitSelect}
@@ -47,7 +48,19 @@ export default class RepoInfo extends React.Component<RepoInfoProps> {
             );
         } else {
             return (
-                <div>No repo given</div>
+                <div className="repo-info">
+                    <div className="left">
+                        <Title additionalClass="commits-title" text="No repo given" />
+                        <CommitList
+                            commits={commits}
+                            onSelect={this.props.onCommitSelect}
+                            selectedCommit={this.props.selectedCommit}
+                        />
+                    </div>
+                    <div className="right">
+                        <CommitDetail commit={selectedCommit} />
+                    </div>
+                </div>
             );
         }
     }
